@@ -5,18 +5,24 @@
         <tr>
             <th>Title</th>
             <th>Description</th>
-            <th>Actions</th>
+            <th colspan="3">Actions</th>
         </tr>
     </thead>
 
     <body>
         <% @articles.each do |article| %>
             <tr>
-                <td><%= article.title %></td>
-                <td><%= article.description%></td>
-                <td><%= button_to 'Show', article_path(article), method: :get %></td>
-                <td><%= button_to 'Delete', article_path(article), method: :delete %></td>
+               <td><%= article.title %></td>
+               <td><%= article.description%></td>
+               <td><%= link_to 'Show', article_path(article), data: { "turbo-method": :get } %></td>
+               <td><%= link_to 'Edit', edit_article_path(article), data: { "turbo-method": :get } %></td>
+               <td><%= link_to 'Delete', article_path(article), data: { "turbo-method": :delete } %></td>
             </tr>
         <% end %>    
     </body>
 </table>
+
+
+ <p>
+    <td><%= link_to 'Create new article', new_article_path, data: { "turbo-method": :get } %></td>
+</p>
